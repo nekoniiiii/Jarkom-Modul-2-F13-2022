@@ -202,3 +202,35 @@ service bind9 restart
 host -t PTR 10.35.3.2
 ```
 ![image](https://user-images.githubusercontent.com/91374949/198828930-4135e686-3ab3-4e12-a2c2-5aeabfa72490.png)
+
+### NOMOR 5
+
+Agar dapat tetap dihubungi jika server WISE bermasalah, buatlah juga Berlint sebagai DNS Slave untuk domain utama
+
+Pada Berlint, lakukan ```apt-get update``` dan ```apt-get install bind9 -y```.
+Kemudian, ```nano /etc/bind/named.conf.local``` dan masukkan konfigurasi zone berikut :
+```
+zone "wise.f13.com" {
+	type slave;
+	masters { "IP dari WISE"; };
+	file "/var/lib/bind/wise/wise.f13.com";
+};
+```
+Restart bind9 service pada Berlint setelah konfigurasi selesai.
+
+Pada WISE, lakukan konfigurasi dengan ```nano /etc/bind/named.conf.local```.
+Kemudian, edit zone wise.f13.com yang sudah ada dengan :
+```
+zone "wise.f13.com" {		
+	type master;
+	notify yes;
+	also-notify { "IP Berlint"; }; 
+	allow-transfer { "IP Berlint"; }; 
+	file "/etc/bind/wise/wise.f13.com";
+};
+```
+Lakukan restart pada service bind9 di Wise juga.
+
+Untuk mengetes, stop service bind9 pada Wise, masukkan IP Berlint pada etc/resolv.conf di SSS atau Garden, dan lakukan ping.
+
+### Nomor 6
