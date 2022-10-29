@@ -233,4 +233,41 @@ Lakukan restart pada service bind9 di Wise juga.
 
 Untuk mengetes, stop service bind9 pada Wise, masukkan IP Berlint pada etc/resolv.conf di SSS atau Garden, dan lakukan ping.
 
-### Nomor 6
+### NOMOR 6
+
+### NOMOR 7
+
+### NOMOR 8
+Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.wise.yyy.com. Pertama, Loid membutuhkan webserver dengan DocumentRoot pada /var/www/wise.yyy.com
+
+### Penyelesaian
+- Pada Eden, install aplikasi apache, PHP, dan libapache2-mod-php7.0
+```
+apt-get update
+apt-get install apache2 -y
+apt-get install php -y
+apt-get install libapache2-mod-php7.0 -y
+```
+
+- Copy file 000-default.conf ke wise.f13.com.conf pada 
+```
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/wise.f13.com.conf
+```
+
+- Tambahkan bagian berikut pada file wise.f13.com.conf
+![image](https://user-images.githubusercontent.com/72701806/198831067-722b6f71-041f-4348-8a77-602d41113090.png)
+
+
+- Aktifkan konfigurasi ```a2ensite wise.f13.com.conf```
+
+- Lakukan instalasi berikut untuk mendownload dan meng-unzip file yang akan digunakan
+```
+apt-get install wget -y
+apt-get install unzip -y
+```
+
+- Pindah ke directory /var/www menggunakan perintah ```cd /var/www```
+
+- Download file yang dibutuhkan menggunakan perintah berikut
+
+### NOMOR 9
