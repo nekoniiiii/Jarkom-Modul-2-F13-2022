@@ -249,7 +249,7 @@ apt-get install php -y
 apt-get install libapache2-mod-php7.0 -y
 ```
 
-- Copy file 000-default.conf ke wise.f13.com.conf pada 
+- Copy file 000-default.conf ke wise.f13.com.conf 
 ```
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/wise.f13.com.conf
 ```
@@ -271,3 +271,9 @@ apt-get install unzip -y
 - Download file yang dibutuhkan menggunakan perintah berikut
 
 ### NOMOR 9
+Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapat menjadi www.wise.yyy.com/home
+
+### Penyelesaian
+- Restart apache pada Eden menggunakan ```service apache2 restart```, kemudian jalankan perintah ```a2enmod rewrite```
+
+-
