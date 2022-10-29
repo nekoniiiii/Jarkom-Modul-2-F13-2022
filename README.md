@@ -341,18 +341,51 @@ apt-get install unzip -y
 - Pindah ke directory /var/www menggunakan perintah ```cd /var/www```
 
 - Download file yang dibutuhkan menggunakan perintah berikut
+```
+wget 'https://docs.google.com/uc?export=download&id=1q9g6nM85bW5T9f5yoyXtDqonUKKCHOTV' -O 'eden.wise.zip'
+wget 'https://docs.google.com/uc?export=download&id=1bgd3B6VtDtVv2ouqyM8wLyZGzK5C9maT' -O 'strix.operation.wise.zip'
+wget 'https://docs.google.com/uc?export=download&id=1S0XhL9ViYN7TyCj2W66BNEXQD2AAAw2e' -O 'wise.zip'
+```
+
+- Unzip file menggunakan perintah berikut
+```
+unzip wise.zip
+unzip eden.wise.zip
+unzip strix.operation.wise.zip
+```
+
+- Rename nama folder-folder tersebut menyesuaikan nama kelompok
+```
+mv wise wise.f13.com
+mv eden.wise eden.wise.f13.com
+mv strix.operation.wise strix.operation.wise.f13.com
+```
+![8 1](https://user-images.githubusercontent.com/72701806/198838319-cef518f9-3561-46ae-b948-7386197a6e08.png)
+
+
+- Restart apache pada Eden menggunakan ```service apache2 restart```
+
+- Jalankan ```apt-get install lynx``` pada client kemudian buka url menggunakan ```lynx www.wise.f13.com```
+- ![8 2](https://user-images.githubusercontent.com/72701806/198838362-e3fb3b60-a372-4d50-858e-51fe8fce5342.png)
+
 
 ### NOMOR 9
 Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapat menjadi www.wise.yyy.com/home
 
 ### Penyelesaian
-- Restart apache pada Eden menggunakan ```service apache2 restart```, kemudian jalankan perintah ```a2enmod rewrite```
+- Jalankan perintah ```a2enmod rewrite``` pada Eden
 
 - Tambahkan bagian berikut pada file wise.f13.com.conf
+![9 1](https://user-images.githubusercontent.com/72701806/198838428-333f6075-29ec-44b4-8e92-7db67abb7b1c.png)
 
 
 - Tambahkan bagian berikut pada /var/www/wise.f13.com/.htacces
+- ![9 2](https://user-images.githubusercontent.com/72701806/198838455-913c50ee-e306-453d-91e3-0013820e5f84.png)
 
+
+- Restart apache pada Eden menggunakan ```service apache2 restart```
+
+- Jalankan ```apt-get install lynx``` pada client kemudian buka url menggunakan ```lynx www.wise.f13.com```
 
 ### NOMOR 10
 Setelah itu, pada subdomain www.eden.wise.yyy.com, Loid membutuhkan penyimpanan aset yang memiliki DocumentRoot pada /var/www/eden.wise.yyy.com
