@@ -366,7 +366,7 @@ mv strix.operation.wise strix.operation.wise.f13.com
 - Restart apache pada Eden menggunakan ```service apache2 restart```
 
 - Jalankan ```apt-get install lynx``` pada client kemudian buka url menggunakan ```lynx www.wise.f13.com```
-- ![8 2](https://user-images.githubusercontent.com/72701806/198838362-e3fb3b60-a372-4d50-858e-51fe8fce5342.png)
+![8 2](https://user-images.githubusercontent.com/72701806/198838362-e3fb3b60-a372-4d50-858e-51fe8fce5342.png)
 
 
 ### NOMOR 9
@@ -380,7 +380,7 @@ Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapa
 
 
 - Tambahkan bagian berikut pada /var/www/wise.f13.com/.htacces
-- ![9 2](https://user-images.githubusercontent.com/72701806/198838455-913c50ee-e306-453d-91e3-0013820e5f84.png)
+![9 2](https://user-images.githubusercontent.com/72701806/198838455-913c50ee-e306-453d-91e3-0013820e5f84.png)
 
 
 - Restart apache pada Eden menggunakan ```service apache2 restart```
@@ -392,12 +392,14 @@ Setelah itu, pada subdomain www.eden.wise.yyy.com, Loid membutuhkan penyimpanan 
 
 ### Penyelesaian
 - Pada Eden, tambahkan bagian berikut pada file wise.f13.com.conf
+
 ![10 1](https://user-images.githubusercontent.com/72701806/198837577-d54fd75d-4b19-4b01-9467-076080313b5c.png)
 
 
 - Restart apache pada Eden menggunakan ```service apache2 restart```
 
 - Akses url pada client menggunakan ```lynx www.eden.wise.f13.com```
+
 ![10](https://user-images.githubusercontent.com/72701806/198837603-b30a69c6-0628-4a5e-9544-03c6175a2b5b.png)
 
 
@@ -406,12 +408,14 @@ Akan tetapi, pada folder /public, Loid ingin hanya dapat melakukan directory lis
 
 ### Penyelesaian
 - Pada Eden, tambahkan bagian berikut pada file wise.f13.com.conf
+
 ![11 1](https://user-images.githubusercontent.com/72701806/198837612-bbb2cfbe-b0b3-450e-b9f5-702c858326bc.png)
 
 
 - Restart apache pada Eden menggunakan ```service apache2 restart```
 
 - Akses url pada client menggunakan ```lynx www.eden.wise.f13.com/public```
+
 ![11](https://user-images.githubusercontent.com/72701806/198837619-38150b75-b6b1-4163-987d-1583342b9da8.png)
 
 
@@ -420,12 +424,14 @@ Tidak hanya itu, Loid juga ingin menyiapkan error file 404.html pada folder /err
 
 ### Penyelesaian
 - Pada Eden, tambahkan bagian berikut pada file wise.f13.com.conf
+
 ![12 1](https://user-images.githubusercontent.com/72701806/198837672-6242e327-be35-4e03-a71b-6c7bafe47bda.png)
 
 
 - Restart apache pada Eden menggunakan ```service apache2 restart```
 
 - Dicoba mengakses url pada client menggunakan ```lynx www.eden.wise.f13.com/hai```. Karena url invalid maka akan mendapat tampilan berikut
+
 ![12](https://user-images.githubusercontent.com/72701806/198837680-5d9aa153-4486-40ad-9b4e-6d2b374d19df.png)
 
 
@@ -434,25 +440,28 @@ Loid juga meminta Franky untuk dibuatkan konfigurasi virtual host. Virtual host 
 
 ### Penyelesaian
 - Pada Eden, tambahkan bagian ```Alias "/js" "/var/www/eden.wise.f13.com/public/js"```pada file wise.f13.com.conf
+
 ![13 1](https://user-images.githubusercontent.com/72701806/198837698-1c2abc05-3999-4d66-aebe-0b0c0b28e383.png)
 
 
 - Restart apache pada Eden menggunakan ```service apache2 restart```
 
 - Akses url pada client menggunakan ```lynx www.eden.wise.f13.com/js```
+
 ![13](https://user-images.githubusercontent.com/72701806/198837709-3484b994-18fc-49ac-b8d6-fce7297b1004.png)
 
 
 ### NOMOR 14
-Loid meminta agar www.strix.operation.wise.yyy.com hanya bisa diakses dengan
-port 15000 dan port 15500
+Loid meminta agar www.strix.operation.wise.yyy.com hanya bisa diakses dengan port 15000 dan port 15500
 
 ### Penyelesaian
 - Pada Eden, tambahkan bagian berikut pada file wise.f13.com.conf
+
 ![14 1](https://user-images.githubusercontent.com/72701806/198837861-5b27df4c-ea21-4ee3-b8d8-6482d4d1db1e.png)
 
 
 - Tambahkan bagian berikut pada /etc/apache2/ports.conf
+
 ![14 2](https://user-images.githubusercontent.com/72701806/198837730-b9a8ae1b-c667-4411-9af4-17ce93dfe344.png)
 
 
@@ -462,8 +471,7 @@ port 15000 dan port 15500
 
 
 ### NOMOR 15
-...dengan autentikasi username Twilight dan password opStrix
-dan file di /var/www/strix.operation.wise.yyy
+...dengan autentikasi username Twilight dan password opStrix dan file di /var/www/strix.operation.wise.yyy
 
 ### NOMOR 16
 ...dan setiap kali mengakses IP Eden akan dialihkan secara otomatis ke www.wise.yyy.com
