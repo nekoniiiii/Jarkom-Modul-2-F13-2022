@@ -234,8 +234,80 @@ Lakukan restart pada service bind9 di Wise juga.
 Untuk mengetes, stop service bind9 pada Wise, masukkan IP Berlint pada etc/resolv.conf di SSS atau Garden, dan lakukan ping.
 
 ### NOMOR 6
+Karena banyak informasi dari Handler, buatlah subdomain yang khusus untuk operation yaitu operation.wise.yyy.com dengan alias www.operation.wise.yyy.com yang didelegasikan dari WISE ke Berlint dengan IP menuju ke Eden dalam folder operation
 
+### Penyelesaian
+- Pada WISE, tambahkan konfigurasi berikut pada file ```/etc/bind/wise/wise.f13.com```
+```
+ns1     IN      A       10.35.2.2       ; IP Berlint
+operation       IN      NS      ns1
+```
+![image](https://user-images.githubusercontent.com/91374949/198836622-d63118ad-1ba1-431e-b194-0ef95f3d8597.png)
+- Kemudian, pada file ```/etc/bind/named.conf.options```, comment line ```dnssec-validation auto;``` lalu tambahkan ```allow-query{any;};```
+- Restart bind 
+```
+service bind9 restart
+```
+- Kemudian pada Berlint hal yang sama pada file ```/etc/bind/named.conf.options```, comment line ```dnssec-validation auto;``` lalu tambahkan ```allow-query{any;};```
+- Kemudian, tambahkan konfigurasi berikut pada ```/etc/bind/named/conf.local```
+```
+zone "operation.wise.f13.com" {
+    type master;
+    file "/etc/bind/operation/operation.wise.f13.com";
+};
+```
+![image](https://user-images.githubusercontent.com/91374949/198837472-91f8493e-eaf7-43de-8cce-5770888b098f.png)
+
+- Buat folder baru bernama ```operation``` dengan 
+```
+mkdir /etc/bind/operation
+```
+- Tambahkan konfigurasi berikut pada file ```/etc/bind/operation/operation.wise.f13.com```
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     operation.wise.f13.com. root.operation.wise.f13.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      operation.wise.f13.com.
+@       IN      A       10.35.2.3
+www     IN      CNAME   operation.wise.f13.com.
+```
+- Restart bind 
+```
+service bind9 restart
+```
+- Untuk mencoba testing, lakukan perintah berikut pada client SSS atau Garden
+```
+ping operation.wise.f13.com
+ping www.operation.wise.f13.com
+host -t CNAME www.operation.wise.f13.com
+```
 ### NOMOR 7
+Untuk informasi yang lebih spesifik mengenai Operation Strix, buatlah subdomain melalui Berlint dengan akses strix.operation.wise.yyy.com dengan alias www.strix.operation.wise.yyy.com yang mengarah ke Eden
+
+### Penyelesaian
+- Pada Berlint, tambahkan konfigurasi berikut pada file ```/etc/bind/operation/operation.wise.f13.com```
+```
+strix   IN      A       10.35.2.3
+www.strix       IN      CNAME   strix.operation.wise.f13.com.
+```
+![image](https://user-images.githubusercontent.com/91374949/198837273-b391b61e-7c5a-4fcc-b5c4-c0a2cbd083e2.png)
+- Restart bind 
+```
+service bind9 restart
+```
+- Kemudian, lakukan testing pada client SSS atau Garden dengan melakukan perintah berikut
+```
+ping strix.operation.wise.f13.com
+ping www.strix.operation.wise.f13.com
+```
 
 ### NOMOR 8
 Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.wise.yyy.com. Pertama, Loid membutuhkan webserver dengan DocumentRoot pada /var/www/wise.yyy.com
