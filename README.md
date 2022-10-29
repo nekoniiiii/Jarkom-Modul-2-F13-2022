@@ -1,7 +1,7 @@
 # Jarkom-Modul-2-F13-2022
 
 
-## Penyelesaian Soal Praktikum Modul 1 Jaringan Komputer
+## Penyelesaian Soal Praktikum Modul 2 Jaringan Komputer
 
 * Muhammad Andi Akbar Ramadhan (5025201264)
 * Natya Madya Marciola	(5025201238)
